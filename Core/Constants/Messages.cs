@@ -15,6 +15,7 @@ namespace Core.Constants
         public static string NameInvalid = "İsim geçersiz";
         public static string MaintenanceTime = "Sistem bakımda ";
         public static string DataNotFound = "Veri bulunamadı";
+        public static string InvalidExtension = "Geçersiz Format";
 
 
         #region User Messages

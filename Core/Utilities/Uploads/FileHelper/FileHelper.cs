@@ -11,9 +11,15 @@ namespace Core.Utilities.Uploads.FileHelper
     public class FileHelper
     {
         static string directory = Directory.GetCurrentDirectory() + @"\wwwroot\";
-        static string path = @"/Images\";
+        //static string path = @"/Images\";
 
-        public static string Add(IFormFile file)
+        /// <summary>
+        /// File Helper Add
+        /// </summary>
+        /// <param name="file"> File </param>
+        /// <param name="path"> @"/Images\" </param>
+        /// <returns></returns>
+        public static string Add(IFormFile file,string path)
         {
             string extension = Path.GetExtension(file.FileName);
             string newFileName = Guid.NewGuid().ToString("N") + extension;
@@ -44,10 +50,10 @@ namespace Core.Utilities.Uploads.FileHelper
         }
 
 
-        public static string Update(IFormFile file, string oldImagePath)
+        public static string Update(IFormFile file, string oldImagePath,string newPath)
         {
             Delete(oldImagePath);
-            return Add(file);
+            return Add(file, newPath);
 
 
         }

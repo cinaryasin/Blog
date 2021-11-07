@@ -2,6 +2,7 @@
 using Blog.Business.Services;
 using Blog.DataAccess.EntityFramework.ConfigureExtension;
 using Core.Utilities.Security.JWT;
+using Core.Utilities.Uploads.FileHelper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,6 +21,8 @@ namespace Blog.Business
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IImageService, ImageService>();
+            
 
             services.AddTransient<ITokenHelper, JwtHelper>();
            

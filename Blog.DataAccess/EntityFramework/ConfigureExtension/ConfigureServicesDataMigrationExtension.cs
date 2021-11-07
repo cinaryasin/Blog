@@ -17,6 +17,7 @@ namespace Blog.DataAccess.EntityFramework.ConfigureExtension
         {
             services.AddTransient<IUserRepository, EfUserRepository>();
             services.AddTransient<ICategoryRepository, EfCategoryRepository>();
+            services.AddTransient<IImageRepository, EfImageRepository>();
 
 
             services.AddDbContext<MssqlContext>();
