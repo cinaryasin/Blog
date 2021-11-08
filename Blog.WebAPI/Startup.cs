@@ -9,7 +9,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace Blog.WebAPI
 {
@@ -29,12 +33,17 @@ namespace Blog.WebAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+                
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog.WebAPI", Version = "v1" });
+                c.IgnoreObsoleteProperties();
+                
             });
+            
             
             services.EnableBusinessServices(Configuration);
             
         }
+       
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -13,6 +13,7 @@ namespace Blog.DataAccess.EntityFramework.Configurations
                 .ValueGeneratedOnAdd();
             builder.Property(e => e.Name)
                .HasMaxLength(100)
+              
                .IsRequired();
             builder.Property(e => e.CreateDate)
                 .HasColumnType("date");

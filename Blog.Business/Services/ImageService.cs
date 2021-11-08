@@ -50,7 +50,7 @@ namespace Blog.Business.Services
         public IResult AddCollective(IFormFile[] files, Image image)
         {
             //TODO : i => i.Id == image.Id  Id'Ler Blog id ye dönüşecek ve image/blog tabloları birbirine bağlanacak
-            List<Image> gelAll = _imageRepository.GetAll(i => i.Id == image.Id);
+            List<Image> gelAll = _imageRepository.GetAll(i => i.UserId == image.UserId);
             var result = (gelAll.Count() >= 5);
 
             if (!result)
@@ -58,7 +58,7 @@ namespace Blog.Business.Services
                 
                 foreach (var file in files)
                 {
-                    image = new Image { Id = image.Id };
+                    image = new Image { UserId = image.UserId };
                      Add(file, image);
                 }
                 return new SuccessResult(Messages.Added);

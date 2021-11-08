@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Blog.WebAPI.Controllers
@@ -27,9 +28,10 @@ namespace Blog.WebAPI.Controllers
             throw new NotImplementedException();
         }
         [HttpPost("AddImage")]
+        
         public IActionResult Add([FromForm] IFormFile[] files, [FromForm] Image image)
         {
-
+            //[FromHeader]
             var result = _imageService.AddCollective(files,image);
             if (result.Success)
             {
