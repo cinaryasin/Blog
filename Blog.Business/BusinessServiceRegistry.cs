@@ -15,14 +15,15 @@ namespace Blog.Business
 {
     public static class BusinessServiceRegistry
     {
-        public static void EnableBusinessServices(this IServiceCollection services, IConfiguration configuration)
+        public static void EnableBusinessServices(this IServiceCollection services)
         {
             
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IImageService, ImageService>();
-            
+            services.AddTransient<IPostService, PostService>();
+
 
             services.AddTransient<ITokenHelper, JwtHelper>();
            

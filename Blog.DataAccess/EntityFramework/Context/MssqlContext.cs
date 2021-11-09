@@ -36,6 +36,8 @@ namespace Blog.DataAccess.EntityFramework.Context
         public virtual DbSet<OperationClaim> OperationClaims { get; set; }
         public virtual DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+
         public virtual DbSet<Image> Images { get; set; }
     }
 }

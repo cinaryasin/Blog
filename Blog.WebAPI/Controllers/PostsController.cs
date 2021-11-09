@@ -1,44 +1,40 @@
 ﻿using Blog.Business.Contracts;
 using Blog.Entities.Models;
 using Core.Api;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Blog.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase, ICoreCrudController<ActionResult, Category>
+    public class PostsController : ControllerBase, ICoreCrudController<ActionResult, Post>
     {
-        ICategoryService _categoryService;
+        IPostService _postService;
 
-        public CategoryController(ICategoryService categoryService)
+        public PostsController(IPostService postService)
         {
-            _categoryService = categoryService;
+            _postService = postService;
         }
 
         [HttpPost("Add")]
-        public ActionResult Add(Category entity)
+        public ActionResult Add(Post entity)
         {
-            var result = _categoryService.Add(entity);
+            var result = _postService.Add(entity);
             return Ok(result.Message);
         }
 
         [HttpPost("Delete")]
-        public ActionResult Delete(Category entity)
+        public ActionResult Delete(Post entity)
         {
-            var result = _categoryService.Delete(entity);
+            var result = _postService.Delete(entity);
             return Ok(result.Message);
         }
 
         [HttpPost("GetAll")]
         public ActionResult GetAll()
         {
-            var result = _categoryService.GetAll();
+            var result = _postService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -49,7 +45,7 @@ namespace Blog.WebAPI.Controllers
         [HttpPost("GetById")]
         public ActionResult GetById(int id)
         {
-            var result = _categoryService.GetById(id);
+            var result = _postService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -57,9 +53,9 @@ namespace Blog.WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost("Update")]
-        public ActionResult Update(Category entity)
+        public ActionResult Update(Post entity)
         {
-            var result = _categoryService.Update(entity);
+            var result = _postService.Update(entity);
             return Ok(result.Message);
         }
     }

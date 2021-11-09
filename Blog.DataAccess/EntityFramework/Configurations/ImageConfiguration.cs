@@ -16,28 +16,14 @@ namespace Blog.DataAccess.EntityFramework.Configurations
             builder.ToTable("Images");
             builder.Property(e => e.Id)
                 .ValueGeneratedOnAdd();
-            builder.HasOne(x => x.User).WithMany().HasForeignKey(x=>x.UserId).IsRequired();
+            builder.HasOne(x => x.User)
+                .WithMany()
+                .HasForeignKey(x=>x.UserId)
+                .IsRequired();
             builder.Property(e => e.CreateDate)
                 .HasColumnType("date");
             builder.Property(e => e.UpdateDate)
                 .HasColumnType("date");
-
-
-
-
-
-
-
-
-            /*
-              modelBuilder.Entity<Grade>()
-            .HasMany<Student>(g => g.Students)
-            .WithRequired(s => s.CurrentGrade)
-            .HasForeignKey<int>(s => s.CurrentGradeId);
-             */
-
         }
-
     }
- 
 }
