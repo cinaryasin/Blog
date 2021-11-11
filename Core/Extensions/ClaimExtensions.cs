@@ -15,6 +15,10 @@ namespace Core.Extensions
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, email));
         }
 
+        public static void AddUserName(this ICollection<Claim> claims, string userName)
+        {
+            claims.Add(new Claim(ClaimTypes.GivenName, userName));
+        }
         public static void AddName(this ICollection<Claim> claims, string name)
         {
             claims.Add(new Claim(ClaimTypes.Name, name));

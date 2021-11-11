@@ -7,5 +7,8 @@ namespace Core.Entities.User
     {
         public int UserId { get; set; }
         public int OperationClaimId { get; set; }
+
+        public User User;
+        public OperationClaim OperationClaim;
     }
 }

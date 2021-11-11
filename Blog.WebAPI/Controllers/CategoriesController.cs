@@ -1,6 +1,7 @@
 ﻿using Blog.Business.Contracts;
 using Blog.Entities.Models;
 using Core.Api;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,7 @@ namespace Blog.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class CategoriesController : ControllerBase, ICoreCrudController<ActionResult, Category>
     {
         ICategoryService _categoryService;
@@ -22,12 +24,12 @@ namespace Blog.WebAPI.Controllers
         }
 
         [HttpPost("Add")]
+        //[Authorize(Roles ="admin")]
         public ActionResult Add(Category entity)
         {
             var result = _categoryService.Add(entity);
             return Ok(result.Message);
         }
-
         [HttpPost("Delete")]
         public ActionResult Delete(Category entity)
         {

@@ -1,16 +1,14 @@
 ﻿using Blog.Business.Contracts;
 using Blog.Entities.DTOs;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Blog.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   
     public class AuthController : ControllerBase
     {
         private IAuthService _authService;
@@ -32,7 +30,7 @@ namespace Blog.WebAPI.Controllers
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
             return BadRequest(result.Message);
@@ -47,7 +45,7 @@ namespace Blog.WebAPI.Controllers
                 return BadRequest(userExists.Message);
             }
 
-            var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
+            var registerResult = _authService.Register(userForRegisterDto);
             var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
             {

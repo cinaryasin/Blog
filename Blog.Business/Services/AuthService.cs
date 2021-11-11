@@ -4,12 +4,8 @@ using Core.Constants;
 using Core.Entities.User;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
-using Core.Utilities.Security.JWT;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Utilities.Security.Token;
+
 
 namespace Blog.Business.Services
 {
@@ -24,10 +20,10 @@ namespace Blog.Business.Services
             _tokenHelper = tokenHelper;
         }
 
-        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passwordHash, out passwordSalt);
             var user = new User
             {
                 UserName = userForRegisterDto.Username,
@@ -45,7 +41,7 @@ namespace Blog.Business.Services
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByEmail(userForLoginDto.Email);
-            if (userToCheck == null)
+            if (!userToCheck.Success)
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
