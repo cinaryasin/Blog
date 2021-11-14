@@ -9,7 +9,7 @@ namespace Blog.Business.Contracts
     public interface IImageService : ICrudService<Image>
     {
 
-        IDataResult<List<Image>> GetImagesById(int id);
+        
         IResult Add(IFormFile file, Image image);
         IResult AddCollective(IFormFile[] files, Image image);
 

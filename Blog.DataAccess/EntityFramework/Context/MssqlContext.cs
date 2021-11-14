@@ -29,7 +29,11 @@ namespace Blog.DataAccess.EntityFramework.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            
+            
+            
         }
 
         public virtual DbSet<User> Users { get; set; }
@@ -37,7 +41,6 @@ namespace Blog.DataAccess.EntityFramework.Context
         public virtual DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
-
         public virtual DbSet<Image> Images { get; set; }
     }
 }

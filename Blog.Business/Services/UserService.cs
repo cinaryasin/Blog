@@ -14,22 +14,44 @@ namespace Blog.Business.Services
     public class UserService : IUserService
     {
         IUserRepository _userRepository;
+        IUserOperationClaimService _userOperationClaimService;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IUserOperationClaimService userOperationClaimService)
         {
             _userRepository = userRepository;
+            _userOperationClaimService = userOperationClaimService;
         }
 
         public IResult Add(User entity)
         {
+            
+            var resultId = GetById(entity.Id);
+            var resultName = GetByName(entity.UserName);
+
+            if (resultId.Success && resultName.Success)
+            {
+                return new ErrorDataResult<User>(Messages.UserAlreadyExists);
+            }
+            
             _userRepository.Add(entity);
+            UserOperationClaim userOperationClaim = new UserOperationClaim() { OperationClaimId = 2, UserId = entity.Id };
+            _userOperationClaimService.Add(userOperationClaim);
             return new SuccessResult(Messages.Added);
+
         }
 
         public IResult Delete(User entity)
         {
-            _userRepository.Delete(entity);
-            return new SuccessResult(Messages.Deleted);
+            var result = GetById(entity.Id);
+
+            if (result.Success)
+            {
+                _userRepository.Delete(entity);
+
+                return new SuccessDataResult<User>(Messages.Deleted);
+            }
+
+            return new ErrorDataResult<User>(Messages.UserNotFound);
         }
 
         public IDataResult<List<User>> GetAll()
@@ -80,9 +102,16 @@ namespace Blog.Business.Services
 
         public IDataResult<User> Update(User entity)
         {
-            _userRepository.Update(entity);
+            var result = GetById(entity.Id);
 
-            return new SuccessDataResult<User>(Messages.Updated);
+            if (result.Success)
+            {
+                _userRepository.Update(entity);
+
+                return new SuccessDataResult<User>(Messages.Updated);
+            }
+
+            return new ErrorDataResult<User>(Messages.UserNotFound);
 
         }
     }

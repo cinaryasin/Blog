@@ -55,7 +55,6 @@ namespace Blog.Business.Services
 
             if (!result)
             {
-                
                 foreach (var file in files)
                 {
                     image = new Image { UserId = image.UserId };
@@ -67,12 +66,7 @@ namespace Blog.Business.Services
 
             return new ErrorResult(Messages.InvalidExtension);
         }
-        //Image GetById List IFormfile
-        public IDataResult<List<Image>> GetImagesById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public IResult Delete(Image entity)
         {
             _imageRepository.Delete(entity);

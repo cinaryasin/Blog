@@ -44,22 +44,42 @@ namespace Blog.WebAPI.Controllers
         [HttpPost("Delete")]
         public ActionResult Delete(Image entity)
         {
-            throw new NotImplementedException();
+            var result = _imageService.Delete(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
         [HttpPost("GetAll")]
         public ActionResult GetAll()
         {
-            throw new NotImplementedException();
+            var result = _imageService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
         [HttpPost("GetById")]
         public ActionResult GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = _imageService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
         [HttpPost("Update")]
         public ActionResult Update(Image entity)
         {
-            throw new NotImplementedException();
+            var result = _imageService.Update(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

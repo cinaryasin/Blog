@@ -36,8 +36,7 @@ namespace Blog.DataAccess.EntityFramework.Configurations
             builder.Property(e => e.UpdateDate)
                 .HasColumnType("date");
 
-
-
         }
+        
     }
 }

@@ -13,9 +13,9 @@ namespace Core.DataAccess.EntityFramework
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
-        public async void Add(TEntity entity)
+        public void Add(TEntity entity)
         {
-           await using (TContext context = new TContext())
+            using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
                  addedEntity.State = EntityState.Added;

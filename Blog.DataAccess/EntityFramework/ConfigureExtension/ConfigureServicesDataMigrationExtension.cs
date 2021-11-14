@@ -19,6 +19,7 @@ namespace Blog.DataAccess.EntityFramework.ConfigureExtension
             services.AddTransient<ICategoryRepository, EfCategoryRepository>();
             services.AddTransient<IImageRepository, EfImageRepository>();
             services.AddTransient<IPostRepository, EfPostRepository>();
+            services.AddTransient<IUserOperationClaimRepository, EfUserOperationClaimRepository>();
 
 
             services.AddDbContext<MssqlContext>();
@@ -26,6 +27,7 @@ namespace Blog.DataAccess.EntityFramework.ConfigureExtension
             mssqlContext.Database.EnsureDeleted();
             mssqlContext.Database.EnsureCreated();
             mssqlContext.Database.Migrate();
+            
         }
 
     }

@@ -18,6 +18,7 @@ namespace Blog.Business
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IUserOperationClaimService, UserOperationClaimService>();
 
 
             services.AddTransient<ITokenHelper, JwtHelper>();
