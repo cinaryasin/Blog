@@ -23,9 +23,13 @@ namespace Blog.DataAccess.EntityFramework.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //Mssql connection string
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MyBlogDb;Trusted_Connection=True;");
+
+            //Docker connection String
             //optionsBuilder.UseSqlServer(@"Server=dcsqlserver;Database=MyBlogDb;User Id=sa;Password=12345678aA!;");
 
+            
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
