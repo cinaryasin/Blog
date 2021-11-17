@@ -24,7 +24,7 @@ namespace Blog.DataAccess.EntityFramework.ConfigureExtension
 
             services.AddDbContext<MssqlContext>();
             MssqlContext mssqlContext = new MssqlContext();
-            //mssqlContext.Database.EnsureDeleted();
+            mssqlContext.Database.EnsureDeleted();
             mssqlContext.Database.EnsureCreated();
             mssqlContext.Database.Migrate();
             
