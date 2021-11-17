@@ -23,9 +23,8 @@ namespace Blog.DataAccess.EntityFramework.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=dcsqlserver;Database=MyBlogDb;User Id=sa;Password=12345678aA!;");
-
-
+            optionsBuilder.UseSqlServer(@"Server:(localdb)\MSSQLLocalDB:Database=MyBlogDb;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=dcsqlserver;Database=MyBlogDb;User Id=sa;Password=12345678aA!;");
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
