@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  blog.webapi:
+    image: ${DOCKER_REGISTRY-}blogwebapi
+    build:
+      context: .
+      dockerfile: Blog.WebAPI/Dockerfile
+    ports:
+      - "443:443"
+    depends_on:
+      - sqldb
+    networks:
+     - appnet
+  sqldb:
+    container_name: dcsqlserver
+    image: mcr.microsoft.com/mssql/server
+    user: root
+    ports:
+     - 1400:1433
+    environment:
+        SA_PASSWORD: "12345678aA!"
+        ACCEPT_EULA: "Y"
+    volumes:
+        - "dbvol:/var/opt/mssql/data"
+       
+    networks:
+     - appnet
+
+volumes:
+  dbvol: 
+ 
+networks:
+    appnet:
+        driver: bridge

@@ -51,6 +51,7 @@ namespace Blog.Business.Services
             return new ErrorDataResult<Post>(Messages.DataNotFound);
         }
 
+        
         public IDataResult<Post> Update(Post entity)
         {
             entity.UpdateDate = DateTime.Now;
@@ -58,5 +59,7 @@ namespace Blog.Business.Services
 
             return new SuccessDataResult<Post>(Messages.Updated);
         }
+        
+        
     }
 }
