@@ -37,6 +37,7 @@ namespace Blog.Business.Services
             _userService.Add(user);
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
+        
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
