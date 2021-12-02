@@ -31,7 +31,7 @@ namespace Blog.WebAPI.Controllers
             return Ok(result.Message);
         }
 
-        [HttpPost("GetAll")]
+        [HttpGet("GetAll")]
         public ActionResult GetAll()
         {
             var result = _postService.GetAll();

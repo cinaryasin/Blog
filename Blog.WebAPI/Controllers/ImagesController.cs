@@ -51,7 +51,7 @@ namespace Blog.WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("GetAll")]
+        [HttpGet("GetAll")]
         public ActionResult GetAll()
         {
             var result = _imageService.GetAll();

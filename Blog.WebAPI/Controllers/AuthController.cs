@@ -59,16 +59,16 @@ namespace Blog.WebAPI.Controllers
         }
 
 
-        //UserController eklenecek ve user controllerda userlar getirilecek
-        [HttpGet("GetAll")]
-        public ActionResult GetAll()
-        {
-            var result = _userService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result.Message);
-        }
+        ////UserController eklenecek ve user controllerda userlar getirilecek
+        //[HttpGet("GetAll")]
+        //public ActionResult GetAll()
+        //{
+        //    var result = _userService.GetAll();
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result.Message);
+        //}
     }
 }
