@@ -34,7 +34,7 @@ namespace Blog.Business.Services
         public IDataResult<List<Post>> GetAll()
         {
             var result = _postRepository.GetAll();
-            if (result != null)
+            if (result.Count != 0)
             {
                 return new SuccessDataResult<List<Post>>(result, Messages.Listed);
             }
